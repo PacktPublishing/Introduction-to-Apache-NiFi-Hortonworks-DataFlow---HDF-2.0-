@@ -1,0 +1,11 @@
+# Short instructions for Mac / Linux
+# download NiFi at: https://nifi.apache.org/download.html
+# Terminal 1:
+bin/nifi.sh run
+# install docker for mac / docker for linux
+# Terminal 2:
+docker run -it --rm -p 2181:2181 -p 3030:3030 -p 8081:8081 -p 8082:8082 -p 8083:8083 -p 9092:9092 -e ADV_HOST=127.0.0.1 -e RUNTESTS=0 landoop/fast-data-dev
+# Terminal 3:
+docker run -it --net=host landoop/fast-data-dev bash
+kafka-topics --create --topic nifi-topic --zookeeper 127.0.0.1:2181 --partitions 3 --replication-factor 1
+kafka-console-consumer --topic nifi-topic --bootstrap-server 127.0.0.1:9092
